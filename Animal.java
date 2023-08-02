@@ -1,4 +1,4 @@
-package AnimalShelterProject;
+package PokemonShelter;
 import java.util.Date;
 
 
@@ -8,6 +8,7 @@ public abstract class Animal {
     
     private String type;
 
+    
     private Date dateAdded;
     
     private Date rehomingDate;

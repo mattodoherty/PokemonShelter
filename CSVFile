@@ -1,0 +1,60 @@
+import java.io.*;
+
+public class CSVFile{
+
+    public static void writeToData(String filePath){
+
+        File file = new File(filePath);
+
+        try{
+
+            FileWriter outputfile = new FileWriter("Adoptees.csv");
+
+            CSVWriter writer = new CSVWriter(outputfile);
+
+            //Adding a header to CSV with params
+            String[] header = { "Name" , "Type" , "Cost Per Day" , "Date Added" , "Rehoming Date"};
+            writer.writeNext(header);
+
+
+            //Adding data to CSV
+            String[] data1 = (myAnimal.getName() , myAnimal.getType() , myAnimal.getCostPerDay() , myAnimal.getDateAdded() , myAnimal.getRehomingDate());
+                writer.writeNext(Adoptees.csv);
+
+                writer.close();
+
+        }
+        catch (IOException e) {
+            // TODO auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+    public static void readData(){
+
+        String file = "src\\Adoptees.csv";
+        BufferedReader reader = null;
+        String line = "";
+
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while((line = reader.readLine()) != null){
+
+                String[] row = line.split(",");
+
+                for (String index : row){
+                    System.out.printf("%-10s", index);
+                }
+                System.out.println();
+            }
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        finally{
+
+        }
+    }
+
+
+}

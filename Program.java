@@ -1,4 +1,4 @@
-package AnimalShelterProject;
+package PokemonShelter;
 import java.util.*;
 //import java.util.Date;
 
@@ -11,7 +11,7 @@ public class Program {
     System.out.println("--Please Enter Pokémon choice, or Enter 0 to Exit:");
     System.out.println("                                                  ");
     Boolean loop = true;
-    String[] typeArray = new String[]{"charmander", "squirtle"};
+    String[] typeArray = new String[]{"charmander", "squirtle" , "pikachu" , "bulbasaur"};
     List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
     Scanner input = new Scanner(System.in);
     

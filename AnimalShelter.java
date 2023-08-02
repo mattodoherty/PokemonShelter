@@ -1,4 +1,4 @@
-package AnimalShelterProject;
+package PokemonShelter;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package AnimalShelterProject;
+package PokemonShelter;
 import java.util.Scanner;
 import java.util.Date;
 
@@ -11,6 +11,7 @@ public class Adoptee extends Animal{
       }
 
       public void Initialise(Scanner input, String choice){
+        System.out.println(" ");
         System.out.println("Enter " + choice + "'s name: ");
         String name = input.nextLine();
         this.setName(name);
