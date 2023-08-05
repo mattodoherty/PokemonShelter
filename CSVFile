@@ -1,14 +1,16 @@
+package PokemonShelter;
 import java.io.*;
+import com.opencsv.*;
 
 public class CSVFile{
 
-    public static void writeToData(String filePath){
+    public static void writeToData(String filePath, Adoptee adoptee){
 
         File file = new File(filePath);
 
         try{
 
-            FileWriter outputfile = new FileWriter("Adoptees.csv");
+            FileWriter outputfile = new FileWriter(file, true);
 
             CSVWriter writer = new CSVWriter(outputfile);
 
@@ -18,11 +20,17 @@ public class CSVFile{
 
 
             //Adding data to CSV
-            String[] data1 = (myAnimal.getName() , myAnimal.getType() , myAnimal.getCostPerDay() , myAnimal.getDateAdded() , myAnimal.getRehomingDate());
-                writer.writeNext(Adoptees.csv);
+            String[] data = {
+                adoptee.getName() ,
+                adoptee.getType() ,
+                adoptee.getCostPerDay() ,
+                adoptee.getDateAdded() , 
+                adoptee.getRehomingDate()};
+
+                writer.writeNext(data);
 
                 writer.close();
-
+            System.out.println("Data added successfully!");
         }
         catch (IOException e) {
             // TODO auto-generated catch block

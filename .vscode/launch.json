@@ -8,6 +8,20 @@
             "type": "java",
             "name": "Program",
             "request": "launch",
+            "mainClass": "Program",
+            "projectName": "PokemonShelter_6738b89f"
+        },
+        {
+            "type": "java",
+            "name": "Program",
+            "request": "launch",
+            "mainClass": "PokemonShelter.Program",
+            "projectName": ""
+        },
+        {
+            "type": "java",
+            "name": "Program",
+            "request": "launch",
             "mainClass": "AnimalShelterProject.Program"
         },
         {

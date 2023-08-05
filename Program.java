@@ -1,5 +1,6 @@
 package PokemonShelter;
 import java.util.*;
+
 //import java.util.Date;
 
 public class Program {
@@ -11,9 +12,15 @@ public class Program {
     System.out.println("--Please Enter Pokémon choice, or Enter 0 to Exit:");
     System.out.println("                                                  ");
     Boolean loop = true;
-    String[] typeArray = new String[]{"charmander", "squirtle" , "pikachu" , "bulbasaur"};
+    String[] typeArray = new String[]{
+      "charmander", "squirtle" ,
+     "pikachu" , "bulbasaur", 
+     "eevie", "lucario", 
+     "charizard", "blastoise", 
+     "raichu", "dragonite"};
     List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
     Scanner input = new Scanner(System.in);
+    Adoptee myAnimal = new Adoptee();
     
     while (loop){
 
@@ -28,14 +35,13 @@ public class Program {
       }  
 
       else if (typeList.contains(choice.toLowerCase())){
-          Adoptee myAnimal = new Adoptee();
          
             
             
 
           myAnimal.Initialise(input,choice);
 
-          System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " has been successfully added to our database!");
+          System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database.");
       
           loop = false;
         }
@@ -46,7 +52,9 @@ public class Program {
 
           }
         }
-    
+
+        CSVFile.writeToData("Adoptees.csv", myAnimal);
+
     
     input.close();
     
