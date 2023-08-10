@@ -1,8 +1,6 @@
 package PokemonShelter;
 import java.util.*;
 
-//import java.util.Date;
-
 public class Program {
 
  public static void main(String[] args){  
@@ -15,7 +13,7 @@ public class Program {
     String[] typeArray = new String[]{
       "charmander", "squirtle" ,
      "pikachu" , "bulbasaur", 
-     "eevie", "lucario", 
+     "eevee", "lucario", 
      "charizard", "blastoise", 
      "raichu", "dragonite"};
     List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
@@ -31,42 +29,32 @@ public class Program {
         System.out.println("Thanks for stopping by. Have a great day!");
 
         loop = false;
-
       }  
 
       else if (typeList.contains(choice.toLowerCase())){
-         
-            
-            
+        myAnimal.Initialise(input,choice);
 
-          myAnimal.Initialise(input,choice);
-
-          System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database.");
+        System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database.");
       
-          loop = false;
-        }
+        loop = false;
+      }
 
-        else{
+      else{
 
-            System.out.println("Oops! Invalid input. Please try again:");
+        System.out.println("Oops! Invalid input. Please try again:");
 
-          }
-        }
+      }
+    }
 
-        CSVFile.writeToData("Adoptees.csv", myAnimal);
+    CSVFile.writeToData(myAnimal);
 
-    
     input.close();
-    
 
-    
-        /*  A method for the date the animal was added   
+         //A method for the date the animal was added   
 
 
         Date date = new Date();
-        myAnimal.setDateAdded(date);*/
-    
-
+        myAnimal.setDateAdded(date);
 
   }
 }

@@ -8,7 +8,6 @@ public abstract class Animal {
     
     private String type;
 
-    
     private Date dateAdded;
     
     private Date rehomingDate;
