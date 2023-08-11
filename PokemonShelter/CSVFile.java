@@ -17,16 +17,17 @@ public class CSVFile{
             FileWriter outFile = new FileWriter(fileData, true);
             String header =  "Name " + "," + " Type" + "," + "Cost Per Day" + "," + "Date Added" + "," + "Rehoming Date";
             BufferedWriter bw = new BufferedWriter(outFile);
+
+            //Adding a header to CSV with params - check if file is empty
             if(fileData.length() == 0) {
 
-                //Adding a header to CSV with params - check if exists
                 bw.write(header);
             
             }
 
             
             
-            System.out.println("Working Directory: " + System.getProperty("user.dir"));
+            //System.out.println("Working Directory: " + System.getProperty("user.dir"));
             
             
             
@@ -43,7 +44,7 @@ public class CSVFile{
             bw.write(data);
             bw.close();
                
-            System.out.println("Data added successfully!");
+            System.out.println("Pokémon added successfully!");
         }
         catch (IOException e) {
             // TODO auto-generated catch block
