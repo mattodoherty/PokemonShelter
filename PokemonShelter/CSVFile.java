@@ -27,8 +27,9 @@ public class CSVFile{
 
             
             
-            //System.out.println("Working Directory: " + System.getProperty("user.dir"));
+            System.out.println("Working Directory: " + System.getProperty("user.dir"));
             
+            String directory = System.getProperty("user.dir");
             
             
             
@@ -54,7 +55,7 @@ public class CSVFile{
     }
     public static void readData(){
 
-        String file = "src\\Adoptees.csv";
+        String file = System.getProperty("user.dir") + "\\data.csv";
         BufferedReader reader = null;
         String line = "";
 
@@ -74,7 +75,12 @@ public class CSVFile{
             e.printStackTrace();
         }
         finally{
-
+            try {
+                reader.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 
