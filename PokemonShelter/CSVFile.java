@@ -1,6 +1,7 @@
 package PokemonShelter;
 import java.io.*;
-
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CSVFile{
 
@@ -54,7 +55,7 @@ public class CSVFile{
 
     }
     public static void readData(){
-
+        
         String file = System.getProperty("user.dir") + "\\data.csv";
         BufferedReader reader = null;
         String line = "";
@@ -83,6 +84,25 @@ public class CSVFile{
             }
         }
     }
+
+    private List<String> readCsvFile(String string) {
+        return null;
+    }
+
+
+
+    List<String> csvData = readCsvFile(System.getProperty("user.dir") + "\\data.csv");
+    String searchTerm;
+    List<String> matchingRows = searchCSV(csvData, searchTerm);
+    matchingRows.forEach(System.out.println());
+
+
+    private List<String> searchCSV(List<String> csvData, String searchTerm){
+        return csvData.stream()
+            .filter(line -> line.contains(searchTerm))
+            .collect(Collectors.toList());
+    }
+
 
 
 }
