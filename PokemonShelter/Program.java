@@ -14,7 +14,7 @@ public class Program {
       "charmander", "squirtle" ,
       "pikachu" , "bulbasaur",  
       "charizard", "blastoise", 
-      "raichu", "venusaur"};
+      "raichu", "venusaur", "snorlax"};
       List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
       Scanner input = new Scanner(System.in);
       Adoptee myAnimal = new Adoptee();
