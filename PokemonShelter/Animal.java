@@ -31,7 +31,8 @@ public abstract class Animal {
 }
 //Method to print animal details
 public void printDetails() {
-    System.out.println ("---------------POKÉMON DETAILS--------------- ");
+    System.out.println (" ");
+    System.out.println ("-----------------POKÉMON DETAILS----------------- ");
     System.out.println("Type: " + type);
     System.out.println ("Name: " + name);
     System.out.println ("Daily cost: " + costPerDay);

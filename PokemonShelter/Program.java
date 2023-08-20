@@ -11,8 +11,8 @@ public class Program {
     System.out.println("                                                  ");
     Boolean loop = true;
     String[] typeArray = new String[]{
-      "charmander", "squirtle" ,
       "pikachu" , "bulbasaur",  
+      "charmander", "squirtle" , "pichu",
       "charizard", "blastoise", 
       "raichu", "venusaur", "snorlax"};
       List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
@@ -34,6 +34,9 @@ public class Program {
           myAnimal.Initialise(input,choice);
           
           System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database...");
+          Date date = new Date();
+          myAnimal.setDateAdded(date);
+          CSVFile.writeToData(myAnimal);
           
           loop = false;
         }
@@ -44,11 +47,9 @@ public class Program {
           
         }
       }
-      Date date = new Date();
-      myAnimal.setDateAdded(date);
       
-      CSVFile.writeToData(myAnimal);
-      myAnimal.printDetails();
+      //myAnimal.printDetails();
+      //CSVFile.readData();
       input.close();
       
       
