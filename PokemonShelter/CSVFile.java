@@ -1,5 +1,6 @@
 package PokemonShelter;
 import java.io.*;
+import java.util.Scanner;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,55 +55,100 @@ public class CSVFile{
         }
 
     }
-    public static void readData(){
+
+     public static void readData(String fileData, String searchTerm)
+     {
         
         String file = System.getProperty("user.dir") + "\\data.csv";
         BufferedReader reader = null;
-        String line = "";
+        
+        try 
+        {
+            String line = "";
+            reader = new BufferedReader(new FileReader(fileData));
+            String headerLine = reader.readLine();
 
-        try {
-            reader = new BufferedReader(new FileReader(file));
-            while((line = reader.readLine()) != null){
+            while((line = reader.readLine()) != null)
+            {
 
-                String[] row = line.split(",");
-
-                for (String index : row){
-                    System.out.printf("%-10s", index);
+                String[] fields = line.split(",");
+                
+                if (fields.length >= 2) 
+                {
+                    String firstColumnValue = fields[0].trim();
+                    String secondColumnValue = fields[1].trim();
+                    for (String index : fields)
+                    {
+                        System.out.printf("%-10s", index);
+                    }
+                    
+                    if(firstColumnValue.equalsIgnoreCase(searchTerm)) 
+                    {
+                        System.out.println("Found a matching record: " + line);
+                    }
+                    else
+                    {
+                    }
+                    System.out.print("No record found for '" + searchTerm + "'");
                 }
                 System.out.println();
             }
         }
-        catch(Exception e) {
+        catch(Exception e) 
+        {
             e.printStackTrace();
         }
-        finally{
+        finally
+        {
+
             try {
                 reader.close();
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
+
             }
         }
     }
 
-    private List<String> readCsvFile(String string) {
-        return null;
+  /*private static Scanner x;
+
+public static void readFile(String searchTerm, String filepath)
+  {
+    boolean found = false;
+  
+    try
+    {
+        x = new Scanner (new File(filepath));
+        x.useDelimiter("[,\n]");
+        while(x.hasNext() && !found)
+        {
+            setType(x.next());
+            name = x.next();
+            costPerDay = x.next();
+            dateAdded = x.next();
+            rehomingDate = x.next();
+
+            if(ID.equals(searchTerm))
+            {
+                found = true;
+            }
+
+        if (found)
+        {
+            myAnimal.printDetails();
+        } 
+        }
     }
+    catch(Exception e)
+    {
 
-
-
-    List<String> csvData = readCsvFile(System.getProperty("user.dir") + "\\data.csv");
-    String searchTerm;
-    List<String> matchingRows = searchCSV(csvData, searchTerm);
-    matchingRows.forEach(System.out.println());
-
-
-    private List<String> searchCSV(List<String> csvData, String searchTerm){
-        return csvData.stream()
-            .filter(line -> line.contains(searchTerm))
-            .collect(Collectors.toList());
     }
+    }*/
+  }
 
 
 
-}
+    
+
+

@@ -10,12 +10,12 @@ public class Adoptee extends Animal{
               super(name, type, dateAdded, rehomingDate, costPerDay);
       }
 
-      public void Initialise(Scanner input, String choice){
+      public void Initialise(Scanner input, String newEntry){
         System.out.println(" ");
-        System.out.println("Enter " + choice + "'s name: ");
+        System.out.println("Enter " + newEntry + "'s name: ");
         String name = input.nextLine();
         this.setName(name);
-        this.setType(choice);
+        this.setType(newEntry);
         this.setCostPerDay(12.5);
       }
 }
