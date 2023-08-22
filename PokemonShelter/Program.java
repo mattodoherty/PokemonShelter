@@ -1,11 +1,12 @@
 package PokemonShelter;
+import java.io.File;
 import java.util.*;
 
 public class Program {
 
   public static void main(String[] args)
   {  
-    
+     System.out.println("====================================================");
     System.out.println("-------------------POKÉMON SHELTER------------------");
     System.out.println("====================================================");
     System.out.println("----------------------WELCOME!----------------------");
@@ -23,18 +24,17 @@ public class Program {
       "pikachu" , "bulbasaur",  
       "charmander", "squirtle" , "pichu",
       "charizard", "blastoise", 
-      "raichu", "venusaur"
-    };
-
-    List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
-    Scanner input = new Scanner(System.in);
-    Adoptee myAnimal = new Adoptee();
-    
-    while (loop){
+      "raichu", "venusaur"};
+      List<String> typeList = new ArrayList<>(Arrays.asList(typeArray));
+      Scanner input = new Scanner(System.in);
+      Adoptee myAnimal = new Adoptee();
+      File fileData = new File(System.getProperty("user.dir") + "\\data.csv");
+      
+      while (loop){
         
-      String choice = input.nextLine();
+        String choice = input.nextLine();
         
-      if (choice.equals ("0")) 
+        if (choice.equals ("0")) 
       {
         System.out.println("Thanks for stopping by. Have a great day!");
         loop = false;
@@ -44,7 +44,7 @@ public class Program {
         System.out.println("====================================================");
         System.out.println("------------------Add a New Adoptee-----------------");
         System.out.println("Please enter Pokémon Type:                          ");
-
+        
         String newEntry = input.nextLine();
         myAnimal.Initialise(input, newEntry);
         if (typeList.contains(newEntry.toLowerCase()))
@@ -52,7 +52,8 @@ public class Program {
           System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database...");
           Date date = new Date();
           myAnimal.setDateAdded(date);
-          CSVFile.writeToData(myAnimal);
+          CSVFile.writeToData(fileData, myAnimal);
+          myAnimal.printDetails();
           loop = false;
         }
         else 
@@ -64,15 +65,18 @@ public class Program {
       {
         System.out.println("====================================================");
         System.out.println("-------------Search For an Existing Adoptee---------");
-        System.out.println("------Please Enter Pokémon's name:                  ");
+        System.out.println("Please Enter Pokémon's name:                  ");
+        String searchTerm1 = input.nextLine();
+        System.out.println("Please Enter Pokémon's type:                  ");
+        String searchTerm2 = input.nextLine();
         //Call the search function
-        //CSVFile.readData(fileData, searchTerm);
+        CSVFile.readData( fileData.getAbsolutePath(), searchTerm1, searchTerm2);
         loop = false;
       }
         
       else if(choice.equals("3"))
       {
-        //Call the search function
+        //Call the info function
         loop = false;
       }
       
@@ -81,7 +85,6 @@ public class Program {
         System.out.println("Oops! Invalid input. Please try again:");
       }
     }
-      //myAnimal.printDetails();
       //CSVFile.readData();
       input.close();
   }

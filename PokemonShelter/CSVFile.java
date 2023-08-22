@@ -10,9 +10,9 @@ public class CSVFile{
      * @param filePath
      * @param adoptee
      */
-    public static void writeToData(Adoptee adoptee){
+    public static void writeToData(File fileData, Adoptee adoptee){
 
-        File fileData = new File(System.getProperty("user.dir") + "\\data.csv");
+        
 
         try{
             
@@ -26,8 +26,6 @@ public class CSVFile{
                 bw.write(header);
             
             }
-
-            
             
             System.out.println("Working Directory: " + System.getProperty("user.dir"));
             
@@ -50,13 +48,13 @@ public class CSVFile{
             System.out.println("Pokémon added successfully!");
         }
         catch (IOException e) {
-            // TODO auto-generated catch block
+            
             e.printStackTrace();
         }
 
     }
 
-     public static void readData(String fileData, String searchTerm)
+     public static void readData(String fileData, String searchTerm1, String searchTerm2)
      {
         
         String file = System.getProperty("user.dir") + "\\data.csv";
@@ -64,34 +62,44 @@ public class CSVFile{
         
         try 
         {
+            if(fileData.length() == 0) 
+            {
+
+                System.out.println("Opps! Looks like our database is empty!");
+            
+            }
+            else
+            {
             String line = "";
             reader = new BufferedReader(new FileReader(fileData));
             String headerLine = reader.readLine();
 
-            while((line = reader.readLine()) != null)
-            {
-
-                String[] fields = line.split(",");
-                
-                if (fields.length >= 2) 
+             while((line = reader.readLine()) != null)
                 {
-                    String firstColumnValue = fields[0].trim();
-                    String secondColumnValue = fields[1].trim();
-                    for (String index : fields)
+                     String[] fields = line.split(",");
+
+                    if (fields.length >= 2) 
                     {
-                        System.out.printf("%-10s", index);
-                    }
-                    
-                    if(firstColumnValue.equalsIgnoreCase(searchTerm)) 
-                    {
-                        System.out.println("Found a matching record: " + line);
-                    }
-                    else
-                    {
-                    }
-                    System.out.print("No record found for '" + searchTerm + "'");
+                        String firstColumnValue = fields[0].trim();
+                        String secondColumnValue = fields[1].trim();
+                        for (String index : fields)
+                        {
+                            System.out.printf("%-10s", index);
+                        }
+                        if(firstColumnValue.equalsIgnoreCase(searchTerm1) && secondColumnValue.equalsIgnoreCase(searchTerm2)) 
+                        {
+                            System.out.println("====================================================");
+                            System.out.println("Name     Type     Cost P/D     Date Joined");
+                            System.out.println("====================================================");
+                            System.out.println(line);
+                        }
+                        else
+                        {
+                            System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
+                        }
                 }
                 System.out.println();
+                 }
             }
         }
         catch(Exception e) 
@@ -100,51 +108,13 @@ public class CSVFile{
         }
         finally
         {
-
             try {
                 reader.close();
             } catch (IOException e) {
-
                 e.printStackTrace();
-
             }
         }
     }
-
-  /*private static Scanner x;
-
-public static void readFile(String searchTerm, String filepath)
-  {
-    boolean found = false;
-  
-    try
-    {
-        x = new Scanner (new File(filepath));
-        x.useDelimiter("[,\n]");
-        while(x.hasNext() && !found)
-        {
-            setType(x.next());
-            name = x.next();
-            costPerDay = x.next();
-            dateAdded = x.next();
-            rehomingDate = x.next();
-
-            if(ID.equals(searchTerm))
-            {
-                found = true;
-            }
-
-        if (found)
-        {
-            myAnimal.printDetails();
-        } 
-        }
-    }
-    catch(Exception e)
-    {
-
-    }
-    }*/
   }
 
 
