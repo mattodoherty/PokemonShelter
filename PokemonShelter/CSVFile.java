@@ -1,8 +1,6 @@
 package PokemonShelter;
 import java.io.*;
-import java.util.Scanner;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class CSVFile{
 
@@ -62,6 +60,13 @@ public class CSVFile{
         
         try 
         {
+            String line;
+            boolean found = false;
+            reader = new BufferedReader(new FileReader(fileData));
+            String headerLine = reader.readLine();
+            while ((line = reader.readLine()) != null) {
+                String[] fields = line.split(",");
+
             if(fileData.length() == 0) 
             {
 
@@ -70,14 +75,9 @@ public class CSVFile{
             }
             else
             {
-            String line = "";
-            reader = new BufferedReader(new FileReader(fileData));
-            String headerLine = reader.readLine();
 
              while((line = reader.readLine()) != null)
                 {
-                     String[] fields = line.split(",");
-
                     if (fields.length >= 2) 
                     {
                         String firstColumnValue = fields[0].trim();
@@ -92,11 +92,13 @@ public class CSVFile{
                             System.out.println("Name     Type     Cost P/D     Date Joined");
                             System.out.println("====================================================");
                             System.out.println(line);
+                            found = true;
                         }
                         else
                         {
                             System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
                         }
+                    }
                 }
                 System.out.println();
                  }
