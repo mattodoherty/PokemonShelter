@@ -62,47 +62,48 @@ public class CSVFile{
         {
             String line;
             boolean found = false;
-            reader = new BufferedReader(new FileReader(fileData));
+            reader = new BufferedReader(new FileReader(file));
             String headerLine = reader.readLine();
-            while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null)
+             {
                 String[] fields = line.split(",");
 
-            if(fileData.length() == 0) 
+            if(file.length() == 0) 
             {
 
-                System.out.println("Opps! Looks like our database is empty!");
+                System.out.println("Oops! Looks like our database is empty!");
             
             }
             else
             {
 
-             while((line = reader.readLine()) != null)
-                {
-                    if (fields.length >= 2) 
+             //while((line = reader.readLine()) != null)
+               // {
+                    /*if (fields.length >= 2) 
                     {
-                        String firstColumnValue = fields[0].trim();
-                        String secondColumnValue = fields[1].trim();
-                        for (String index : fields)
+                        /*for (String index : fields)
                         {
                             System.out.printf("%-10s", index);
-                        }
-                        if(firstColumnValue.equalsIgnoreCase(searchTerm1) && secondColumnValue.equalsIgnoreCase(searchTerm2)) 
+                        }*/
+                    //}
+                    String firstColumnValue = fields[0].trim();
+                    String secondColumnValue = fields[1].trim();
+                        
+                    
+                    if(firstColumnValue.equalsIgnoreCase(searchTerm1) && secondColumnValue.equalsIgnoreCase(searchTerm2)) 
                         {
                             System.out.println("====================================================");
                             System.out.println("Name     Type     Cost P/D     Date Joined");
                             System.out.println("====================================================");
                             System.out.println(line);
                             found = true;
-                        }
-                        else
-                        {
-                            System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
-                        }
+                        } 
                     }
                 }
-                System.out.println();
-                 }
-            }
+                // }
+                if (!found){
+                 System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
+                }
         }
         catch(Exception e) 
         {
