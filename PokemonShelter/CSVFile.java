@@ -15,7 +15,7 @@ public class CSVFile{
         try{
             
             FileWriter outFile = new FileWriter(fileData, true);
-            String header =  "Name " + "," + " Type" + "," + "Cost Per Day" + "," + "Date Added" + "," + "Rehoming Date";
+            String header =  "Name " + "," + " Type" + "," + "Weight" + "," + "Cost Per Day" + "," + "Date Added" + "," + "Rehoming Date";
             BufferedWriter bw = new BufferedWriter(outFile);
 
             //Adding a header to CSV with params - check if file is empty
@@ -25,18 +25,14 @@ public class CSVFile{
             
             }
             
-            System.out.println("Working Directory: " + System.getProperty("user.dir"));
-            
-            String directory = System.getProperty("user.dir");
-            
-            
-            
+           // System.out.println("Working Directory: " + System.getProperty("user.dir"));
+ 
             //Adding data to CSV
             String data = 
             adoptee.getName() +","+ 
             adoptee.getType() + "," +
+            adoptee.getWeight() + "," +
             adoptee.getCostPerDay() + "," +
-            //toString converts dates to strings
             adoptee.getDateAdded().toString() + "," ;
             //adoptee.getRehomingDate().toString();
             bw.newLine();
@@ -52,7 +48,7 @@ public class CSVFile{
 
     }
 
-     public static void readData(String fileData, String searchTerm1, String searchTerm2)
+    public static void readData(String fileData, String searchTerm1, String searchTerm2)
      {
         
         String file = System.getProperty("user.dir") + "\\data.csv";
@@ -65,45 +61,35 @@ public class CSVFile{
             reader = new BufferedReader(new FileReader(file));
             String headerLine = reader.readLine();
             while ((line = reader.readLine()) != null)
-             {
+            {
                 String[] fields = line.split(",");
 
-            if(file.length() == 0) 
-            {
+                if(file.length() == 0) 
+                {
 
-                System.out.println("Oops! Looks like our database is empty!");
-            
-            }
-            else
-            {
-
-             //while((line = reader.readLine()) != null)
-               // {
-                    /*if (fields.length >= 2) 
-                    {
-                        /*for (String index : fields)
-                        {
-                            System.out.printf("%-10s", index);
-                        }*/
-                    //}
+                    System.out.println("Oops! Looks like our database is empty!");
+                
+                }
+                else
+                {
                     String firstColumnValue = fields[0].trim();
                     String secondColumnValue = fields[1].trim();
-                        
-                    
                     if(firstColumnValue.equalsIgnoreCase(searchTerm1) && secondColumnValue.equalsIgnoreCase(searchTerm2)) 
                         {
                             System.out.println("====================================================");
-                            System.out.println("Name     Type     Cost P/D     Date Joined");
+                            System.out.println("Name     Type    Weight(kg)  Cost P/D    Date Joined");
                             System.out.println("====================================================");
+                            System.out.println("");
                             System.out.println(line);
+                            System.out.println("");
                             found = true;
                         } 
+                    
                     }
-                }
-                // }
-                if (!found){
-                 System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
-                }
+            }
+            if (!found){
+                System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
+            }
         }
         catch(Exception e) 
         {

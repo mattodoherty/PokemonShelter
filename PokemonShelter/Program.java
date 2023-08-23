@@ -49,6 +49,7 @@ public class Program {
         myAnimal.Initialise(input, newEntry);
         if (typeList.contains(newEntry.toLowerCase()))
         {
+           System.out.println("====================================================");
           System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database...");
           Date date = new Date();
           myAnimal.setDateAdded(date);
@@ -72,6 +73,33 @@ public class Program {
         //Call the search function
         CSVFile.readData( fileData.getAbsolutePath(), searchTerm1, searchTerm2);
         loop = false;
+
+        //adopt
+        System.out.println("====================================================");
+        System.out.println("-------Would you like to adopt this Pokémon?--------");
+        System.out.println("------------------(Y) [YES] (N) [NO]----------------");
+        System.out.println("====================================================");
+        String adoptChoice = input.nextLine();
+        boolean loop2 = true;
+        while(loop2)
+        {
+          if(adoptChoice.equalsIgnoreCase("y")){
+
+            //the adopt function
+            adoptee.Adopt();
+            System.out.println("Great! " + adoptee.getName() + " seems really happy to see you!" );
+            System.out.println("We're sure you'll make a great Pokémon trainer!");
+            loop2 = false;
+          }
+          else if (adoptChoice.equalsIgnoreCase("n")){
+            System.out.println("----------------Have a great day!-------------------");
+            System.out.println("====================================================");
+            loop2 = false;
+          }
+          else{
+            System.out.println("Invalid input, try again.");
+          }
+        }
       }
         
       else if(choice.equals("3"))

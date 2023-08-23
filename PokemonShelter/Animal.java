@@ -1,4 +1,5 @@
 package PokemonShelter;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -13,6 +14,8 @@ public abstract class Animal {
     private Date rehomingDate;
     
     private double costPerDay; 
+
+    private double weight;
     
 
    
@@ -20,9 +23,10 @@ public abstract class Animal {
     public Animal(){}
 
     //Constructor for an animal
-    public Animal(String name, String type, Date dateAdded, Date rehomingDate, double costPerDay){
+    public Animal(String name, String type, double weight, Date dateAdded, Date rehomingDate, double costPerDay){
         
         this.name = name;
+        this.weight = weight;
         this.dateAdded = dateAdded;
         this.rehomingDate = rehomingDate;
         this.type = type;
@@ -35,6 +39,7 @@ public void printDetails() {
     System.out.println ("-----------------POKÉMON DETAILS----------------- ");
     System.out.println("Type: " + type);
     System.out.println ("Name: " + name);
+    System.out.println("Weight: " + weight + "kg");
     System.out.println ("Daily cost: " + costPerDay);
     System.out.println ("Joined us on: " + dateAdded);
     System.out.println ("Was rehomed on: " + rehomingDate);
@@ -72,8 +77,8 @@ public void setDateAdded(Date dateAdded) {
 public Date getRehomingDate() {
     return rehomingDate;
 }
-public void setRehomingDate(Date rehomingDate) {
-    this.rehomingDate = rehomingDate;
+public void setRehomingDate() {
+    this.rehomingDate = new Date();
 }
 
 
@@ -81,8 +86,17 @@ public double getCostPerDay() {
     return costPerDay;
 }
 public void setCostPerDay(double costPerDay) {
-        this.costPerDay = costPerDay;
-    }
+     this.costPerDay = costPerDay;
+ }
+
+public void setWeight(double weight) {
+     this.weight = weight;
+}
+
+public double getWeight(){
+
+    return weight;
+}
     
  //----------------------------------------------------------------------------------------------------------------------------------   
  
