@@ -1,5 +1,4 @@
 package PokemonShelter;
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -40,10 +39,15 @@ public void printDetails() {
     System.out.println("Type: " + type);
     System.out.println ("Name: " + name);
     System.out.println("Weight: " + weight + "kg");
-    System.out.println ("Daily cost: " + costPerDay);
+    if(rehomingDate == null)
+    {
+        System.out.println ("Daily cost: " + costPerDay);
+    }
     System.out.println ("Joined us on: " + dateAdded);
-    System.out.println ("Was rehomed on: " + rehomingDate);
-    
+    if(rehomingDate != null)
+    {
+        System.out.println ("Was rehomed on: " + rehomingDate);
+    }
 }
 
 
@@ -77,8 +81,8 @@ public void setDateAdded(Date dateAdded) {
 public Date getRehomingDate() {
     return rehomingDate;
 }
-public void setRehomingDate() {
-    this.rehomingDate = new Date();
+public void setRehomingDate(Date rehomingDate) {
+    this.rehomingDate = rehomingDate;
 }
 
 

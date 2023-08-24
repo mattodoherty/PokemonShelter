@@ -1,5 +1,6 @@
 package PokemonShelter;
 import java.util.Scanner;
+import java.io.File;
 import java.util.Date;
 
 
@@ -25,8 +26,11 @@ public class Adoptee extends Animal{
 
       public void Adopt()
       {
-        this.setRehomingDate();
-        
+        File fileData = new File(System.getProperty("user.dir") + "\\data.csv");
+        this.setRehomingDate(new Date());
+        this.setDateAdded(getDateAdded());
+        CSVFile.writeToData(fileData, this);
+        this.setCostPerDay(0);
       }
 
 

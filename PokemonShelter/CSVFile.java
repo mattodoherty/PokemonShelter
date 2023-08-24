@@ -1,5 +1,11 @@
 package PokemonShelter;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class CSVFile{
@@ -26,16 +32,38 @@ public class CSVFile{
             }
             
            // System.out.println("Working Directory: " + System.getProperty("user.dir"));
- 
+            String validateRehomingDate;
+           if(adoptee.getRehomingDate() != null){
+                validateRehomingDate = adoptee.getRehomingDate().toString();
+                
+                File file = new File(System.getProperty("user.dir") + "\\data.csv");
+                BufferedReader reader = new BufferedReader(new FileReader(file));
+                List<String> lines = reader.lines().collect(Collectors.toList());
+                String row = lines.get(0);
+                //lines.set(0, row);
+                FileWriter writer = new FileWriter(file);
+                for (String line : lines) {
+                    String[] fields = line.split(",");
+                    if(!(adoptee.getName().equals(fields[0]) && adoptee.getType().equals(fields[1]))){
+                        writer.write(line + System.lineSeparator());
+                    }
+                }
+                writer.close();
+            }
+           else{
+                validateRehomingDate = "";
+           }
             //Adding data to CSV
             String data = 
             adoptee.getName() +","+ 
             adoptee.getType() + "," +
             adoptee.getWeight() + "," +
             adoptee.getCostPerDay() + "," +
-            adoptee.getDateAdded().toString() + "," ;
-            //adoptee.getRehomingDate().toString();
-            bw.newLine();
+            adoptee.getDateAdded().toString() + "," + 
+            validateRehomingDate;
+            if(validateRehomingDate.equals("")){
+                bw.newLine();
+            }
             bw.write(data);
             bw.close();
                
@@ -48,24 +76,25 @@ public class CSVFile{
 
     }
 
-    public static void readData(String fileData, String searchTerm1, String searchTerm2)
-     {
+    public static Adoptee readData(String fileData, String searchTerm1, String searchTerm2, boolean foundFlag)
+    {
         
         String file = System.getProperty("user.dir") + "\\data.csv";
         BufferedReader reader = null;
-        
+        Adoptee searchAnimal = new Adoptee();
         try 
         {
             String line;
-            boolean found = false;
             reader = new BufferedReader(new FileReader(file));
-            String headerLine = reader.readLine();
+            //String headerLine = reader.readLine();
             while ((line = reader.readLine()) != null)
             {
                 String[] fields = line.split(",");
-
+                boolean found = false;
+                
                 if(file.length() == 0) 
                 {
+                    
 
                     System.out.println("Oops! Looks like our database is empty!");
                 
@@ -83,13 +112,31 @@ public class CSVFile{
                             System.out.println(line);
                             System.out.println("");
                             found = true;
+                            foundFlag = true;
+                            searchAnimal.setName(fields[0]);
+                            searchAnimal.setType(fields[1]);
+                            searchAnimal.setWeight(Double.parseDouble(fields[2]));
+                            searchAnimal.setCostPerDay(Double.parseDouble(fields[3]));
+                            searchAnimal.setDateAdded(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(fields[4]));
+                            String rehomingDate = "";
+                            if(fields.length == 6){
+                                rehomingDate = fields[5];
+                                searchAnimal.setRehomingDate(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(rehomingDate));
+                            }
+                            else{
+                                searchAnimal.setRehomingDate(null);
+                            }
+                            
+
                         } 
                     
                     }
             }
-            if (!found){
+            if (!foundFlag){
                 System.out.println("No record found for '" + searchTerm1 + "'" + " the '" + searchTerm2 + "'.");
+
             }
+            
         }
         catch(Exception e) 
         {
@@ -103,6 +150,7 @@ public class CSVFile{
                 e.printStackTrace();
             }
         }
+        return searchAnimal;
     }
   }
 

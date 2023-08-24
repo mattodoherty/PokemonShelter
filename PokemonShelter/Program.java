@@ -49,10 +49,9 @@ public class Program {
         myAnimal.Initialise(input, newEntry);
         if (typeList.contains(newEntry.toLowerCase()))
         {
-           System.out.println("====================================================");
+          System.out.println("====================================================");
           System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database...");
-          Date date = new Date();
-          myAnimal.setDateAdded(date);
+          myAnimal.setDateAdded(new Date());
           CSVFile.writeToData(fileData, myAnimal);
           myAnimal.printDetails();
           loop = false;
@@ -71,10 +70,13 @@ public class Program {
         System.out.println("Please Enter Pokémon's type:                  ");
         String searchTerm2 = input.nextLine();
         //Call the search function
-        CSVFile.readData( fileData.getAbsolutePath(), searchTerm1, searchTerm2);
+        boolean foundFlag = false;
+        myAnimal = CSVFile.readData( fileData.getAbsolutePath(), searchTerm1, searchTerm2, foundFlag);
+        foundFlag = myAnimal.getName() != null ? true : false;
         loop = false;
 
         //adopt
+        if(foundFlag){
         System.out.println("====================================================");
         System.out.println("-------Would you like to adopt this Pokémon?--------");
         System.out.println("------------------(Y) [YES] (N) [NO]----------------");
@@ -84,11 +86,12 @@ public class Program {
         while(loop2)
         {
           if(adoptChoice.equalsIgnoreCase("y")){
-
+            
             //the adopt function
-            adoptee.Adopt();
-            System.out.println("Great! " + adoptee.getName() + " seems really happy to see you!" );
+            myAnimal.Adopt();
+            System.out.println("Great! " + myAnimal.getName() + " seems really happy to see you!" );
             System.out.println("We're sure you'll make a great Pokémon trainer!");
+            System.out.println("Adopted On: " + myAnimal.getRehomingDate());
             loop2 = false;
           }
           else if (adoptChoice.equalsIgnoreCase("n")){
@@ -99,6 +102,7 @@ public class Program {
           else{
             System.out.println("Invalid input, try again.");
           }
+        }
         }
       }
         
