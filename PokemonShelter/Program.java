@@ -72,7 +72,12 @@ public class Program {
         //Call the search function
         boolean foundFlag = false;
         myAnimal = CSVFile.readData( fileData.getAbsolutePath(), searchTerm1, searchTerm2, foundFlag);
-        foundFlag = myAnimal.getName() != null ? true : false;
+        if(myAnimal.getName() != null){
+          foundFlag = true;
+        }
+        else{
+          foundFlag = false;
+        }
         loop = false;
 
         //adopt
