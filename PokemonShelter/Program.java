@@ -1,23 +1,25 @@
 package PokemonShelter;
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.*;
 
 public class Program {
 
-  public static void main(String[] args)
+  public static void main(String[] args) throws IOException, ParseException
   {  
-    System.out.println("====================================================");
-    System.out.println("-------------------POKÉMON SHELTER------------------");
-    System.out.println("====================================================");
-    System.out.println("----------------------WELCOME!----------------------");
-    System.out.println("====================================================");
-    System.out.println("----------------Please Choose an Action-------------");
-    System.out.println("====================================================");
-    System.out.println("====================================================");
-    System.out.println("-1) [  Add New Pokémon  ] -2) [Search For Existing]-");
-    System.out.println("-3) [    Shelter Info   ] -0) [      Cancel       ]-");
-    System.out.println("====================================================");
-    System.out.println("====================================================");
+    System.out.println("==============================================================");
+    System.out.println("------------------------POKÉMON SHELTER-----------------------");
+    System.out.println("==============================================================");
+    System.out.println("---------------------------WELCOME!---------------------------");
+    System.out.println("==============================================================");
+    System.out.println("---------------------Please Choose an Action------------------");
+    System.out.println("==============================================================");
+    System.out.println("==============================================================");
+    System.out.println("------1) [  Add New Pokémon  ] -2) [Search For Existing]------");
+    System.out.println("------3) [    Shelter Info   ] -0) [      Cancel       ]------");
+    System.out.println("==============================================================");
+    System.out.println("==============================================================");
     Boolean loop = true;
     String[] typeArray = new String[]
     {
@@ -39,8 +41,8 @@ public class Program {
       }  
       else if(choice.equals("1"))
       {
-        System.out.println("====================================================");
-        System.out.println("------------------Add a New Adoptee-----------------");
+        System.out.println("==============================================================");
+        System.out.println("-----------------------Add a New Adoptee----------------------");
         System.out.println("Please enter Pokémon Type:                          ");
         
         String newEntry = input.nextLine();
@@ -48,7 +50,7 @@ public class Program {
         {
           myAnimal.Initialise(input, newEntry);
         
-          System.out.println("====================================================");
+          System.out.println("============================================================");
           System.out.println(myAnimal.getName() + " the " + myAnimal.getType() + " is being added to our database...");
           myAnimal.setDateAdded(new Date());
           CSVFile.writeToData(fileData, myAnimal);
@@ -62,15 +64,15 @@ public class Program {
         }
         else if(choice.equals("2"))
         {
-          System.out.println("====================================================");
-          System.out.println("-------------Search For an Existing Adoptee---------");
+          System.out.println("============================================================");
+          System.out.println("-----------------Search For an Existing Adoptee-------------");
           System.out.println("Please Enter Pokémon's type:                  ");
           boolean foundFlag = false;
           boolean loop2 = true;
           while(loop2)
           {
             String searchTerm2 = input.nextLine();
-            if(!typeList.contains(searchTerm2))
+            if(!typeList.contains(searchTerm2.toLowerCase()))
             {
               System.out.println("We don't currently house Pokémon of this type. Try Again:");
             }
@@ -97,10 +99,11 @@ public class Program {
           //adopt
           if(foundFlag)
           {
-            System.out.println("====================================================");
-            System.out.println("-------Would you like to adopt this Pokémon?--------");
-            System.out.println("------------------(Y) [YES] (N) [NO]----------------");
-            System.out.println("====================================================");
+            
+            System.out.println("============================================================");
+            System.out.println("-----------Would you like to adopt this Pokémon?------------");
+            System.out.println("----------------------(Y) [YES] (N) [NO]--------------------23");
+            System.out.println("============================================================");
             String adoptChoice = input.nextLine();
             boolean loop3 = true;
             while(loop3)
@@ -116,8 +119,9 @@ public class Program {
               }
               else if (adoptChoice.equalsIgnoreCase("n"))
               {
-                System.out.println("----------------Have a great day!-------------------");
-                System.out.println("====================================================");
+                
+                System.out.println("--------------------Have a great day!-----------------------");
+                System.out.println("============================================================");
                 loop3 = false;
               }
               else
@@ -131,6 +135,7 @@ public class Program {
         else if(choice.equals("3"))
         {
           //Call the info function
+          CSVFile.ShelterStats(fileData.getAbsolutePath());
           loop = false;
         }
         

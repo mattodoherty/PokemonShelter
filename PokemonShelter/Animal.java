@@ -32,10 +32,10 @@ public abstract class Animal {
         this.costPerDay = costPerDay;
            
 }
-//Method to print animal details
+//Method to prdouble animal details
 public void printDetails() {
     System.out.println (" ");
-    System.out.println ("-----------------POKÉMON DETAILS----------------- ");
+    System.out.println ("----------------------POKÉMON DETAILS----------------------");
     System.out.println("Type: " + type);
     System.out.println ("Name: " + name);
     System.out.println("Weight: " + weight + "kg");
