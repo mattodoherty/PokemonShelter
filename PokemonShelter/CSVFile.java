@@ -68,7 +68,7 @@ public class CSVFile{
             bw.close();
                
             System.out.println("Pokémon processed successfully!");
-            System.out.println("*TESTING* Directory:" + System.getProperty("user.dir"));
+            //System.out.println("*TESTING* Directory:" + System.getProperty("user.dir"));
         }
         catch (IOException e) {
             

@@ -102,7 +102,7 @@ public class Program {
             
             System.out.println("============================================================");
             System.out.println("-----------Would you like to adopt this Pokémon?------------");
-            System.out.println("----------------------(Y) [YES] (N) [NO]--------------------23");
+            System.out.println("----------------------(Y) [YES] (N) [NO]--------------------");
             System.out.println("============================================================");
             String adoptChoice = input.nextLine();
             boolean loop3 = true;
@@ -119,7 +119,8 @@ public class Program {
               }
               else if (adoptChoice.equalsIgnoreCase("n"))
               {
-                
+                System.out.println("That's okay!");
+                System.out.println("*" + myAnimal.getName() + " turns away with tears in their eyes...*");
                 System.out.println("--------------------Have a great day!-----------------------");
                 System.out.println("============================================================");
                 loop3 = false;

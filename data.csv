@@ -1,8 +1,10 @@
 Name , Type,Weight,Cost Per Day,Date Added,Rehoming Date
-Richard,Bulbasaur,20.0,4.0,Sat Aug 26 14:48:32 BST 2023,
 Clarke,Charmander,15.0,3.0,Sat Aug 26 14:49:18 BST 2023,
 Paul,Squirtle,10.0,2.0,Sat Aug 26 14:49:48 BST 2023,
 Alan,Pichu,5.0,1.0,Sat Aug 26 14:50:12 BST 2023,Sat Aug 26 14:58:28 BST 2023
 Fred,Venusaur,30.0,0.0,Sat Aug 26 17:37:26 BST 2023,Sat Aug 26 17:37:59 BST 2023
-Conor,Pikachu,20000.0,0.0,Sat Aug 26 18:04:51 BST 2023,Sat Aug 26 18:06:02 BST 2023
 Connor,Charizard,60.0,0.0,Sat Aug 26 18:02:45 BST 2023,Sat Aug 26 18:06:31 BST 2023
+Lauren,Blastoise,120.0,24.0,Sat Aug 26 18:32:53 BST 2023,
+Conor,Pikachu,20000.0,0.0,Sat Aug 26 18:04:51 BST 2023,Sat Aug 26 18:34:02 BST 2023
+Desmond,Pichu,2.0,0.4,Sat Aug 26 18:34:56 BST 2023,
+Richard,Bulbasaur,20.0,0.0,Sat Aug 26 14:48:32 BST 2023,Sat Aug 26 18:52:30 BST 2023
